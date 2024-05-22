@@ -25,14 +25,10 @@ const useCartStore = create((set) => ({
     let newCart = state.cart.map((cartItem, inx) =>
       inx === index ? { ...cartItem, quantity: cartItem.quantity - 1 } : cartItem
     );
-    newCart = newCart.filter(cartItem => cartItem.quantity > 0); // Remove item if quantity is 0
+    newCart = newCart.filter(cartItem => cartItem.quantity > 0); 
     localStorage.setItem("cart", JSON.stringify(newCart));
     return { cart: newCart };
   }),
-  deleteAllCart: () => set(() => {
-    localStorage.removeItem("cart");
-    return { cart: [] };
-  })
 }));
 
 export default useCartStore;

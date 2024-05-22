@@ -5,7 +5,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import { FaStar } from "react-icons/fa6";
 
 const Wishlist = () => {
-  const { bears, toggleWishlistItem } = useStore();
+  const { bears} = useStore();
 
   return (
     <div style={{marginTop:'10%'}} className='container'>
