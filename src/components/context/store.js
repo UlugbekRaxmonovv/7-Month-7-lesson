@@ -2,21 +2,17 @@ import { create } from 'zustand'
 
 const useStore = create((set) => ({
   bears: JSON.parse(localStorage.getItem('wishlist')) || [],
-  increasePopulation: (action) => {
+  toggleWishlistItem: (item) => {
     set((state) => {
-      // Find the index of the item with the given _id
-      const index = state.bears.findIndex((i) => i._id === action._id);
+      const index = state.bears.findIndex((i) => i._id === item._id);
 
       let updatedBears;
       if (index !== -1) {
-        // If the item exists, double the state (or handle it as required)
-        updatedBears = [...state.bears, ...state.bears];
+        updatedBears = state.bears.filter((i) => i._id !== item._id);
       } else {
-        // If the item does not exist, filter it out (or handle as required)
-        updatedBears = state.bears.filter((i) => i.id !== action.id);
+        updatedBears = [...state.bears, item];
       }
 
-      // Update localStorage
       localStorage.setItem('wishlist', JSON.stringify(updatedBears));
 
       return { bears: updatedBears };
@@ -25,3 +21,4 @@ const useStore = create((set) => ({
 }));
 
 export default useStore;
+
