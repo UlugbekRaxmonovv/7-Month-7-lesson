@@ -6,8 +6,10 @@ import { FaStar } from "react-icons/fa6";
 import axios from '../Api/index';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Loading from '../Loading/Loading';
+import useStore from '../context/store';
 
 const Products = () => {
+    let bir  =  useStore(state => state.increasePopulation.bears)
     const [products,setProducts] = useState([])
     const [number,setNumber] = useState(0)
     const [loading,setLoading] = useState(false)
@@ -27,7 +29,7 @@ const Products = () => {
         <div className="Products" key={inx.id}>
         <div className="card">
         <div className="card_all">
-        <IoMdHeart /> <br />
+        <IoMdHeart onClick={bir} /> <br />
             </div>
             <div className="card_all">
             <FaShoppingCart />
@@ -62,7 +64,7 @@ const Products = () => {
     const fetchData = () =>{
         setNumber(number + 1)
         axios
-        .get(`/products?limit=10&skip=${number}`)
+        .get(`/products?limit=${number}&skip=10`)
         .then(res=>{
             setProducts(products.concat(res.data?.products))
         })
