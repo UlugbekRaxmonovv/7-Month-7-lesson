@@ -3,6 +3,7 @@ import useStore from '../../components/context/store';
 import { IoMdHeart } from "react-icons/io";
 import { FaShoppingCart } from "react-icons/fa";
 import { FaStar } from "react-icons/fa6";
+import './Wishlist.css'
 
 const Wishlist = () => {
   const { bears} = useStore();
@@ -12,9 +13,9 @@ const Wishlist = () => {
       {bears.length === 0 ? (
         <p>No items in wishlist.</p>
       ) : (
-        <ul>
+        <ul className='Ul_link_alt'>
           {
-            bears.map((item) => (
+            bears?.map((item) => (
               <div className="Products" key={item.id}>
                   <div className="card">
                       <div className="card_all">
